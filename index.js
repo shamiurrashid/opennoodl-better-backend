@@ -14,13 +14,16 @@ const app = express();
 // / Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
-// Parse Server Mount path
+// Define the Parse Mount path
 const mountPath = process.env.PARSE_MOUNT || '/parse';
+
+// Configure the cloud function path
+const cloudPath = path.join(__dirname, 'cloud', 'main.js');
 
 // Parse Server options
 const api = new ParseServer({
   databaseURI: databaseUri,
-  cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
+  cloud: cloudPath,
   appId: process.env.APP_ID || 'myAppId',
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. or leave it blank for development
   serverURL:  process.env.SERVER_URL || 'http://localhost:' + port + '/parse',  // Don't forget to change to https if you are going to deploy to production
