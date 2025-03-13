@@ -1,38 +1,34 @@
-
 services:
   - name: mongodb
-    type: web  # Changed to web for the free plan
+    type: web
     env: docker
     region: sin
-    plan: free # Upgrade if needed
-    image: docker.io/library/mongo:latest  # Using official MongoDB image
-    startCommand: docker-entrypoint.sh mongod --bind_ip_all --replSet rs0 #adjust
+    plan: free
+    image: docker.io/library/mongo:latest
+    startCommand: docker-entrypoint.sh mongod --bind_ip_all --replSet rs0
     envVars:
       - key: MONGO_INITDB_ROOT_USERNAME
         value: root
       - key: MONGO_INITDB_ROOT_PASSWORD
         value: example
-    #Important for replicaset
     initCommands:
       - command: mongo --host localhost --port 27017 --eval 'rs.initiate()'
-
   - name: parse-server
     type: web
     env: docker
     region: sin
-    plan: free # Upgrade if needed
-    # dockerfilePath: Dockerfile  # Removing dockerfilePath for this phase
-    image: docker.io/parseplatform/parse-server:latest # Use Official Parse Server Image
-    startCommand: node index.js  # Correct the entry point
-    healthCheckPath: /health # or /parse/health
+    plan: free
+    image: docker.io/parseplatform/parse-server:latest
+    startCommand: node index.js
+    healthCheckPath: /health
     envVars:
-      - key: DATABASE_URI # Replace with the correct mongo uri
+      - key: DATABASE_URI
         value: mongodb://root:example@mongodb:27017/dev
       - key: APP_ID
         value: myAppId
       - key: MASTER_KEY
         value: myMasterKey
       - key: SERVER_URL
-        value:  https://opennoodl-better-backend.onrender.com/parse # changed this
+        value:  https://opennoodl-better-backend.onrender.com/parse
       - key: PORT
         value: 1337
