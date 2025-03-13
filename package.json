@@ -11,6 +11,6 @@
     "@parse/s3-files-adapter": "^1.2.3"
   },
   "engines": {
-    "node": ">=18 <19"
+    "node": ">=20 <22"
   }
 }
