@@ -4,11 +4,11 @@
   "description": "An example Parse API server using the parse-server module",
   "main": "index.js",
   "scripts": {
-    "start": "parse-server"
+    "start": "node index.js"
   },
   "dependencies": {
     "parse-server": "^7.0.0",
-    "@parse/s3-files-adapter": "^1.2.3"
+    "@parse/s3-files-adapter": "^1.2.3",
     "parse-dashboard": "^6.0.0"
   },
   "engines": {
