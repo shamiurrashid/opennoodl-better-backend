@@ -29,21 +29,6 @@ const api = new ParseServer({
 // Mount Parse Server on the /parse mount path
 app.use(mountPath, api);
 
-// Parse Dashboard settings
-const parseDashboard = require('parse-dashboard');
-
-const dashboard = new parseDashboard({
-  "apps": [
-    {
-      "serverURL": 'http://localhost:' + port + '/parse',
-      "appId": process.env.APP_ID || 'myAppId',
-      "masterKey": process.env.MASTER_KEY || '' ,
-      "appName": process.env.APP_NAME || 'MyApp'
-    }
-  ]
-});
-app.use('/dashboard', dashboard);
-
 app.get('/', function (req, res) {
   res.status(200).send('I dream of being a web site.');
 });
