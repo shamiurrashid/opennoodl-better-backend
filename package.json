@@ -9,6 +9,7 @@
   "dependencies": {
     "parse-server": "^7.0.0",
     "@parse/s3-files-adapter": "^1.2.3"
+    "parse-dashboard": "^6.0.0" // add this line
   },
   "engines": {
     "node": ">=20 <21"
