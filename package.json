@@ -12,6 +12,6 @@
     "parse-dashboard": "^6.0.0" // add this line
   },
   "engines": {
-    "node": ">=20 <21"
+    "node": ">=16"
   }
 }
