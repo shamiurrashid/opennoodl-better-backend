@@ -27,7 +27,11 @@ const api = new ParseServer({
 });
 
 // Mount Parse Server on the /parse mount path
-app.use(mountPath, api);
+// app.use(mountPath, api); // Commenting out the app.use here.
+
+// Serve the Parse API on the /parse URL prefix
+const mountPoint = process.env.PARSE_MOUNT || '/parse';
+app.use(mountPoint, api.app);
 
 app.get('/', function (req, res) {
   res.status(200).send('I dream of being a web site.');
